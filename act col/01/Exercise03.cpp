@@ -1,4 +1,9 @@
-
+// =================================================================
+// Multiprocesadores
+// File: Exercise03.cpp
+// Author: Martin Noboa - A01704052
+// 		   Samuel Gonzalez - A01704696
+// =================================================================
 #include <iostream>
 #include <iomanip>
 #include <chrono>
