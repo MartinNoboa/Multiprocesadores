@@ -15,8 +15,6 @@ using namespace std::chrono;
 
 #define MAXIMUM 1000000 //1e6
 
-// implement your code
-
 bool isPrime(int number) {
     bool flag = false;
     if (number < 2) {
