@@ -1,20 +1,8 @@
 // =================================================================
-//
+// Multiprocesadores
 // File: Exercise02.java
-// Author(s):
-// Description: This file contains the code to brute-force all
-//				prime numbers less than MAXIMUM. The time this
-//				implementation takes will be used as the basis to
-//				calculate the improvement obtained with parallel
-//				technologies.
-//
-// Reference:
-// 	Read the document "exercise02.pdf"
-//
-// Copyright (c) 2020 by Tecnologico de Monterrey.
-// All Rights Reserved. May be reproduced for any non-commercial
-// purpose.
-//
+// Author: Martin Noboa - A01704052
+// 		   Samuel Gonzalez - A01704696
 // =================================================================
 import java.lang.Math;
 public class Exercise02 {

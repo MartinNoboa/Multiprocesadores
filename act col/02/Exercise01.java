@@ -1,16 +1,8 @@
 // =================================================================
-//
+// Multiprocesadores
 // File: Exercise01.java
-// Authors: 
-// Description: This file contains the code to count the number of
-//				even numbers within an array. The time this implementation
-//				takes will be used as the basis to calculate the
-//				improvement obtained with parallel technologies.
-//
-// Copyright (c) 2020 by Tecnologico de Monterrey.
-// All Rights Reserved. May be reproduced for any non-commercial
-// purpose.
-//
+// Author: Martin Noboa - A01704052
+// 		   Samuel Gonzalez - A01704696
 // =================================================================
 
 
