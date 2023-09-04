@@ -16,7 +16,7 @@
 import java.util.Arrays;
 
 public class Exercise03 {
-	private static final int SIZE = 100_000;
+	private static final int SIZE = 10000;
 	private int array[];
 
 	public Exercise03(int array[]) {
@@ -24,19 +24,34 @@ public class Exercise03 {
 	}
 
 	public void doTask() {
-		// place your code here
-	}
+		int b[] = new int[SIZE];
+        int c[] = new int[SIZE];
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (this.array[i] > this.array[j] || this.array[i] == this.array[j] && j < i) {
+                    b[i] += 1;
+                }
+            }
+        }
+        for(int i = 0; i < SIZE; i++){
+            c[b[i]] = this.array[i];
+        }
 
+        for(int i = 0; i < SIZE; i++){
+            this.array[i] = c[i];
+        }
+	}
 	public static void main(String args[]) {
 		int array[] = new int[SIZE];
 		int aux[] = new int[SIZE];
 		long startTime, stopTime;
 		double elapsedTime;
 		
-		Exercise03 obj = null;
 
 		Utils.randomArray(array);
 		Utils.displayArray("before", array);
+
+		Exercise03 obj = new Exercise03(array);
 
 		System.out.printf("Starting...\n");
 		elapsedTime = 0;
@@ -44,9 +59,7 @@ public class Exercise03 {
 			System.arraycopy(array, 0, aux, 0, array.length);
 
 			startTime = System.currentTimeMillis();
-
-			// pace your code here.
-
+			obj.doTask();
 			stopTime = System.currentTimeMillis();
 
 			elapsedTime += (stopTime - startTime);
