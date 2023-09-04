@@ -13,6 +13,8 @@
 //
 // =================================================================
 
+
+
 public class Exercise01 {
 	private static final int SIZE = 100_000_000;
 	private int array[];
@@ -22,8 +24,17 @@ public class Exercise01 {
 	}
 
 	public int calculate() {
-		// place your code here
-		return 0;
+		
+		int result = 0;
+		
+		for (int i = 0; i < array.length; i++) {
+            if (array[i] % 2 == 0){
+                result = result + 1;
+            }
+        }
+
+		return result;
+		
 	}
 
 	public static void main(String args[]) {
