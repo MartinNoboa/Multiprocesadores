@@ -6,7 +6,7 @@
 // =================================================================
 import java.lang.Math;
 public class Exercise02 {
-	private static final int SIZE = 1_000_001;
+	private static final int SIZE = 5_000_001;
 
 	public Exercise02() {
 	}
