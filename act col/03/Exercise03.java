@@ -27,24 +27,20 @@ public class Exercise03 extends Thread {
 	}
 
 	public void run() {
-		int b[] = new int[size];
-        int c[] = new int[size];
-        if (start < size){
-            for (int i = start; i < end; i++) {
-                for (int j = 0; j < size; j++) {
-                    if (this.array[i] > this.array[j] || this.array[i] == this.array[j] && j < i) {
-                        b[i] += 1;
-                    }
+		int b[] = new int[SIZE];
+        int c[] = new int[SIZE];
+        for (int i = start; i < end; i++) {
+            for (int j = 0; j < size; j++) {
+                if (this.array[i] > this.array[j] || this.array[i] == this.array[j] && j < i) {
+                    b[i] += 1;
                 }
             }
-            for(int i = start; i < end; i++){
-                c[b[i]] = this.array[i];
-            }
-
-            for(int i = start; i < end; i++){
-                this.array[i] = c[i];
-            }
-        }else{
+        }
+        for(int i = start; i < end; i++){
+            c[b[i]] = this.array[i];
+        }
+        for(int i = start; i < end; i++){
+            this.array[i] = c[i];
         }
         
 	}
@@ -58,8 +54,6 @@ public class Exercise03 extends Thread {
 
 		Utils.randomArray(array);
 		Utils.displayArray("before", array);
-
-		// place your code here
         blockSize = SIZE / Utils.MAXTHREADS;
         threads = new Exercise03[Utils.MAXTHREADS];
 		int aux[] = new int[blockSize];
