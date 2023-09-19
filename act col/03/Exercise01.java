@@ -10,7 +10,8 @@
 // Copyright (c) 2023 by Tecnologico de Monterrey.
 // All Rights Reserved. May be reproduced for any non-commercial
 // purpose.
-//
+//			Sin Threads		Con Threads		Speed Up
+//			83.40000 ms		18.70000 ms		4.45989
 // =================================================================
 
 public class Exercise01 extends Thread {

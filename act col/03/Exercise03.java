@@ -10,7 +10,8 @@
 // Copyright (c) 2023 by Tecnologico de Monterrey.
 // All Rights Reserved. May be reproduced for any non-commercial
 // purpose.
-//
+//      sin threads     con threads     speedup
+//  	116.70000 ms	59.40000 ms	    1.96467 ms
 // =================================================================
 
 import java.util.Arrays;
