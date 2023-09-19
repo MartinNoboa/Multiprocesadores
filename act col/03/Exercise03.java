@@ -10,7 +10,8 @@
 // Copyright (c) 2023 by Tecnologico de Monterrey.
 // All Rights Reserved. May be reproduced for any non-commercial
 // purpose.
-//
+//      sin threads     con threads     speedup
+//  	116.70000 ms	59.40000 ms	    1.96467 ms
 // =================================================================
 
 import java.util.Arrays;
@@ -30,7 +31,7 @@ public class Exercise03 extends Thread {
         int b[] = new int[SIZE];
         int c[] = new int[SIZE];
         for (int i = start; i < end; i++) {
-            for (int j = 0; j < SIZE; j++) {
+            for (int j = 0; j < end; j++) {
                 if (this.array[i] > this.array[j] || this.array[i] == this.array[j] && j < i) {
                     b[i] += 1;
                 }
@@ -75,7 +76,7 @@ public class Exercise03 extends Thread {
 
 			// place your code here.
             for (int j = 0; j < threads.length; j++) {
-                threads[j] = new Exercise03(j * blockSize, (j + 1) * blockSize, aux);
+                threads[j] = new Exercise03(j * blockSize, (j + 1) * blockSize, array);
 
             }
             for (int j = 0; j < threads.length; j++) {
@@ -84,7 +85,7 @@ public class Exercise03 extends Thread {
             for (int j = 0; j < threads.length; j++) {
                 try {
                     threads[j].join();
-                                        
+
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
