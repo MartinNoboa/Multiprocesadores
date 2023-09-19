@@ -18,43 +18,40 @@ import java.util.Arrays;
 
 public class Exercise03 extends Thread {
 	private static final int SIZE = 100_000;
-	private int array[], start, end;
+	private int array[], start, end, size;
 
-	public Exercise03(int start, int end, int array[]) {
+	public Exercise03(int start, int end, int array[], int size) {
 		this.array = array;
-		// place your code here
         this.start = start;
         this.end = end;
+        this.size = size;
 	}
 
-    public void doTask(){
-        int b[] = new int[SIZE];
-        int c[] = new int[SIZE];
-        for (int i = start; i < end; i++) {
-            for (int j = 0; j < end; j++) {
-                if (this.array[i] > this.array[j] || this.array[i] == this.array[j] && j < i) {
-                    b[i] += 1;
+	public void run() {
+		int b[] = new int[size];
+        int c[] = new int[size];
+        if (start < size){
+            for (int i = start; i < end; i++) {
+                for (int j = 0; j < size; j++) {
+                    if (this.array[i] > this.array[j] || this.array[i] == this.array[j] && j < i) {
+                        b[i] += 1;
+                    }
                 }
             }
-        }
-        for(int i = start; i < end; i++){
-            c[b[i]] = this.array[i];
-        }
+            for(int i = start; i < end; i++){
+                c[b[i]] = this.array[i];
+            }
 
-        for(int i = start; i < end; i++){
-            this.array[i] = c[i];
+            for(int i = start; i < end; i++){
+                this.array[i] = c[i];
+            }
+        }else{
         }
-    }
-
-	public void run() {
-		// place your code here
-        doTask();
-
+        
 	}
 
 	public static void main(String args[]) {
 		int array[] = new int[SIZE];
-		int aux[] = new int[SIZE];
 		long startTime, stopTime;
 		double elapsedTime;
 		int blockSize;
@@ -66,17 +63,17 @@ public class Exercise03 extends Thread {
 		// place your code here
         blockSize = SIZE / Utils.MAXTHREADS;
         threads = new Exercise03[Utils.MAXTHREADS];
+		int aux[] = new int[blockSize];
 
 		System.out.printf("Starting...\n");
 		elapsedTime = 0;
 		for (int i = 0; i < Utils.N; i++) {
-			System.arraycopy(array, 0, aux, 0, array.length);
+			System.arraycopy(array, 0, aux, 0, blockSize);
 
 			startTime = System.currentTimeMillis();
 
-			// place your code here.
             for (int j = 0; j < threads.length; j++) {
-                threads[j] = new Exercise03(j * blockSize, (j + 1) * blockSize, array);
+                threads[j] = new Exercise03(j * blockSize, (j + 1) * blockSize, array, blockSize);
 
             }
             for (int j = 0; j < threads.length; j++) {
@@ -85,8 +82,6 @@ public class Exercise03 extends Thread {
             for (int j = 0; j < threads.length; j++) {
                 try {
                     threads[j].join();
-
-
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
