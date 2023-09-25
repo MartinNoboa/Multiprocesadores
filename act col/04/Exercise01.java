@@ -12,6 +12,8 @@
 // All Rights Reserved. May be reproduced for any non-commercial
 // purpose.
 //
+//			Sin Threads		Con Threads		Speed Up
+//			83.40000 ms		24.20000 ms		3.4462
 // =================================================================
 
 import java.util.concurrent.RecursiveTask;
