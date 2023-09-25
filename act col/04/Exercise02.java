@@ -12,7 +12,10 @@
 // All Rights Reserved. May be reproduced for any non-commercial
 // purpose.
 //
-// =================================================================
+// 250.6000
+//      Sin Threads     Con Threads     Speed Up
+//	    871.80000 ms	250.60000 ms	3.4788
+// ================================================================
 
 import java.util.concurrent.RecursiveTask;
 import java.util.concurrent.ForkJoinPool;
