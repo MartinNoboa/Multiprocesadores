@@ -82,9 +82,7 @@ public class Exercise02 extends RecursiveTask<Long> {
 		System.out.printf("Starting...\n");
 		for (int i = 0; i < Utils.N; i++) {
 			startTime = System.currentTimeMillis();
-
-			// place yout code here
-			pool = new ForkJoinPool(Utils.MAXTHREADS);
+            pool = new ForkJoinPool(Utils.MAXTHREADS);
 			result = pool.invoke(new Exercise02(0, SIZE));
 
 			stopTime = System.currentTimeMillis();
