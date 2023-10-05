@@ -4,18 +4,9 @@
 // Author(s):
 //          Martin Adrian Noboa Monar - A01704052
 //          Samuel Octavio González Azpeitia - A01704696
-// Description: This file contains the code to brute-force all
-//				prime numbers less than MAXIMUM using the OpenMP 
-//				technology. To compile:
-//				g++ -o app -fopenmp exercise02.cpp
 //
-// Reference:
-// 	Read the document "exercise02.pdf"
-//
-// Copyright (c) 2022 by Tecnologico de Monterrey.
-// All Rights Reserved. May be reproduced for any non-commercial
-// purpose.
-//
+//			Sin Threads		Con Threads		Speed Up
+//			622.582  ms		104.564  ms		5.95
 // =================================================================
 
 #include <iostream>
@@ -28,7 +19,7 @@
 using namespace std;
 using namespace std::chrono;
 
-#define MAXIMUM 1000001 //1e6
+#define MAXIMUM 1000000 //1e6
 
 // implement your code
 
@@ -40,17 +31,15 @@ bool isPrime(int number) {
     for (int i = 2; i <= sqrt(number); i++) {
         if (number % i == 0) {
                 return false;
-            }else{
-                flag = true;
             }
         }
-    return flag;
+    return true;
     
 }
 
 double sum_primes(int maximum){
- 	#pragma omp parallel for shared(maximum) reduction(+ : result)
 	double result = 0;
+ 	#pragma omp parallel for shared(maximum) reduction(+:result)
     for (int i = 0; i < maximum; i++) {
         if( isPrime(i) )
             result += i;
@@ -75,9 +64,8 @@ int main(int argc, char* argv[]) {
 		timeElapsed += 
 			duration<double, std::milli>(end - start).count();
 	}
-	cout << "result = " << result << "\n";
-	cout << "avg time = " << fixed << setprecision(3) 
-		 << (timeElapsed / N) <<  " ms\n";
+	cout << "result = " << fixed << setprecision(0) << result <<  "\n";
+	cout << "avg time = " << fixed << setprecision(3) << (timeElapsed / N) <<  " ms\n";
 
 	return 0;
 }
