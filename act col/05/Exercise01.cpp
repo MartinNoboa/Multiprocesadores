@@ -9,6 +9,8 @@
 //				technology. To compile:
 //				g++ -o app -fopenmp exercise01.cpp
 //
+//			Sin Threads		Con Threads		Speed Up
+//			636.083  ms		59.044   ms		10.77
 // =================================================================
 
 #include <iostream>
