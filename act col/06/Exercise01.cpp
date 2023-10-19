@@ -26,22 +26,37 @@ using namespace tbb;
 #define SIZE 1000000000
 
 // implement your code
-int count_even(int *array, int size) {
-    int result = 0;
+class Exercise01{
+private:
+    double result;
+    int *array;
+public:
+    Exercise01(int* a): array(a), result(0){};
 
-    for (int i = 0; i < size; i++) {
-        if (array[i] % 2 == 0) {
-            result++;
+    Exercise01(Exercise01 &other, split): array(other.array), result(0) {}
+
+    double getResult() const {
+        return result;
+    }
+
+    void operator() (const blocked_range<int> &r) {
+        for (int i = r.begin(); i != r.end(); i++) {
+            if (array[i] % 2 == 0) {
+                result++;
+            }
         }
     }
 
-    return 0;
-}
+    void join(const Exercise01 &other) {
+		result += other.result;
+	}
+};
 
 
 
 int main(int argc, char* argv[]) {
-	int *array, result;
+	int *array;
+    double result;
 	// These variables are used to keep track of the execution time.
 	high_resolution_clock::time_point start, end;
 	double timeElapsed;
@@ -56,17 +71,9 @@ int main(int argc, char* argv[]) {
 		start = high_resolution_clock::now();
 
 		// call the implemented function
-        parallel_reduce(blocked_range<int>(0, SIZE), 0, [&](const blocked_range<int>& r, int result) {
-            for (int i = r.begin(); i != r.end(); i++) {
-                if (array[i] % 2 == 0) {
-                    result++;
-                }
-            }
-            return result;
-        }, [&](int x, int y) {
-            return x + y;
-        });
-        
+        Exercise01 even(array);
+        parallel_reduce(blocked_range<int>(0, SIZE), even);
+		result = even.getResult();
 
 		end = high_resolution_clock::now();
 		timeElapsed += 
