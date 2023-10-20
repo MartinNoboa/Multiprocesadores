@@ -9,6 +9,8 @@
 //				technology. To compile:
 //				g++ exercise01.cpp -o app -I/usr/local/lib/tbb/include -L/usr/local/lib/tbb/lib/intel64/gcc4.4 -ltbb
 //
+//			Sin Threads		Con Threads		Speed Up
+//			636.083  ms		247.213  ms		2.57
 // =================================================================
 
 #include <iostream>

@@ -27,6 +27,7 @@
 
 
 #include <iostream>
+#include <chrono>
 #include <iomanip>
 #include <cstring>
 #include <cmath>
@@ -38,6 +39,7 @@ const int SIZE = 100000;
 
 using namespace std;
 using namespace tbb;
+using namespace std::chrono;
 
 // place your code here
 
@@ -75,6 +77,10 @@ int main(int argc, char *argv[])
 {
 	int *a,*b,*c;
 	double ms;
+    high_resolution_clock::time_point start, end;
+	double timeElapsed;
+
+    timeElapsed = 0;
 
 	a = new int[SIZE];
     b = new int[SIZE];
@@ -91,22 +97,25 @@ int main(int argc, char *argv[])
 		memcpy(aux, a, sizeof(int) * SIZE);
         memcpy(aux1, b, sizeof(int) * SIZE);
         memcpy(aux2, c, sizeof(int) * SIZE);
-        start_timer();
+        start = high_resolution_clock::now();
 		//EnumSort en(aux, SIZE);
 		
 		// call your method here.
 		//en.sort();
-        EnumSort obj(aux,aux1,aux2,SIZE);
+        EnumSort obj(a,b,c,SIZE);
         parallel_for(blocked_range<int>(0, SIZE),  obj);
         obj.last();
-		ms += stop_timer();
+        end = high_resolution_clock::now();
+		timeElapsed += 
+			duration<double, std::milli>(end - start).count();
 	}
 
-	memcpy(a, aux, sizeof(int) * SIZE);
+	// memcpy(a, aux, sizeof(int) * SIZE);
 	display_array("after", a);
-	cout << "avg time = " << setprecision(15) << (ms / N) << " ms" << endl;
+	cout << "avg time = " << fixed << setprecision(3) 
+		 << (timeElapsed / N) <<  " ms\n";
 	delete[] a;
-	delete [] aux;
+	// delete [] aux;
 	return 0;
 }
 
